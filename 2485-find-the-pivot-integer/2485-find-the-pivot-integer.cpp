@@ -1,25 +1,27 @@
 class Solution {
 public:
     int pivotInteger(int n) {
-        int l=1;
-        int r=n;
-        int lsum=1;
-        int rsum=n;
+    if (n == 1) return 1;
+
+    int totsum = n * (n + 1) / 2; 
+    int sum = 0; 
         
-        if(n==1) return 1;
-        
-        while(l<r){
-            if(lsum < rsum){
-                l++;
-                lsum+=l;
-            }else{
-                r--;
-                rsum+=r;
-            }
-            if(lsum==rsum && r==l){
-                return l;
-            }
+    int l = 1, r = n;
+    while (l < r) {
+        int mid = (l+r)/2;
+        int lsum=mid*(mid-1)/2;
+        int rsum=totsum-mid-lsum;
+        if (lsum < rsum) { 
+            l = mid + 1;
+        } else {
+            r = mid-1;
         }
-        return -1;
+        if (lsum == rsum) {
+            return mid; 
+        }
+    }
+
+    return -1;
+
     }
 };
