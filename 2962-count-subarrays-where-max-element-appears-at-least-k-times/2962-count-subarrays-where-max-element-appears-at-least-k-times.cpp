@@ -1,23 +1,21 @@
 class Solution {
 public:
-    long long countSubarrays(vector<int>& v, int k) {
-        map<int,int>m;
-        int n=v.size();
-        int a=0;
-        for(auto i:v)
-            a=max(a,i);
-        int i=0,j=0;
-        long long ans=0;
-        while(j<n)
-        {
-            m[v[j]]++;
-            while(m[a]>=k) {
-                ans=ans+n-j;
-                m[v[i]]--;
-                i++;
-            }
-            j++;
+    long long countSubarrays(vector<int>& nums, int k) {
+        long long int max_num = *max_element(nums.begin(),nums.end()),count = 0;
+        long long int left = 0,right = 0,ans = 0;
+        while(right<nums.size()){
+            if(nums[right] == max_num)count++;
+            
+            while(count>=k){
+                if(nums[left]==max_num)count--;
+                left++;
+                ans += nums.size()-right;
+            }    
+            right++;
         }
+
+
         return ans;
+        
     }
 };
