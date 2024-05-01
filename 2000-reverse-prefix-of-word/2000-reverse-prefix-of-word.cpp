@@ -16,7 +16,7 @@ public:
             return word;
         } else {
             s1 = word.substr(0, j + 1);
-            s2 = word.substr(j + 1, word.size()); // Adjusted to start from j + 1
+            s2 = word.substr(j + 1, word.size()); 
             reverse(s1.begin(), s1.end());
             return s1 + s2;
         }
